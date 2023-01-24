@@ -1,0 +1,233 @@
+\documentclass[titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+% Margin
+\usepackage[left=3cm, right=3cm, bottom=3cm, top=3cm]{geometry}
+
+% Package for headers 
+\usepackage{fancyhdr}
+\usepackage{cmtt}
+\usepackage{lastpage}
+
+% For figures and stuff
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage[T1]{fontenc}
+
+% Change for different font sizes and families
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage[protrusion=true, expansion=true]{microtype}
+
+% Maths
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% Bibliography
+% \usepackage[backend=biber, style=numeric]{biblatex} 
+% \addbibresource{references.bib}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\addto\captionsenglish{
+  \renewcommand{\contentsname}{Daftar Isi}
+}
+
+% Paragraphs
+\usepackage{indentfirst}
+\usepackage[indent=0.25in]{parskip}
+\usepackage{lettrine}
+
+% Sections customization
+\renewcommand\thesection{\Roman{section}.}
+\renewcommand\thesubsection{\Alph{subsection}.}
+
+% Horizontal line
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing{}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+% Booktabs
+\usepackage{booktabs}
+
+% Title customization
+\usepackage{titlesec}
+\usepackage[Lenny]{fncychap}
+\titleformat{\section}{\Large\bfseries\scshape\filcenter}{\thesection}{0.7em}{}
+
+% Color
+\usepackage{xcolor}
+\definecolor{persiangreen}{cmyk}{1, 0, 0.1, 0.35}
+
+% Header and footer information
+\pagestyle{fancy}
+\fancyhf{} 
+
+\setlength\headheight{15pt}
+\fancyhead[L]{\small TUGAS PEMROGRAMAN KECERDASAN BUATAN}
+\fancyhead[R]{Page \thepage{}}
+\fancyfoot{}
+
+\title{
+    School of Computing \\
+    \large Telkom University \\
+    
+    \includegraphics[width=8cm]{images/telkom_en.png} \\
+    
+    \HRule{0.4pt} \\ [0.5cm]
+
+    \normalsize \textbf {
+        \textcolor{persiangreen}{TUGAS PEMROGRAMAN KECERDASAN BUATAN}
+    } \\
+
+    \LARGE \textbf{Penerapan Fuzzy Logic Untuk Menghitung Nilai Kelayakan Supplier Kain}
+    
+    \HRule{0.4pt} \\ [0.35cm]
+}
+
+\author{
+    Ariq Heritsa Maalik (1305213031) \\
+    Nadya Khairani (1305210069) \\
+    DS-45-01
+}
+
+\date{}
+
+\begin{document}
+
+    \maketitle
+    \newpage
+
+    \section*{}
+        \textbf{Abstract --} Bagi sebuah perusahaan, mempertahankan bisnis di tengah-tengah pandemi merupakan sebuah tantangan yang sangat besar. Dalam kasus ini, perusahaan kaus kaki Soka berupaya memilih supplier kain dengan kualitas yang sebaik mungkin, namun juga perlu menekan biaya operasionalnya. Salah satu cara untuk mempertahankan bisnis adalah dengan memperhatikan kelayakan supplier. Kelayakan supplier dapat dihitung dengan menggunakan metode fuzzy logic. Metode fuzzy logic merupakan kecerdasan buatan reasoning yang dapat digunakan untuk menghitung nilai kelayakan supplier kain. Dalam penelitian ini, metode fuzzy logic digunakan untuk menghitung nilai kelayakan supplier kain. Hasil dari laporan ini adalah lima supplier dengan kelayakan terbaik yang dapat menjadi pertimbangan bagi perusahaan.
+
+        \vspace{0.3cm}
+
+        \noindent \textit{\textbf{Keywords}: Fuzzy logic, kecerdasan buatan, reasoning, kelayakan}
+    % \end{abstract}
+
+    \section{Pendahuluan}
+        \subsection{Latar Belakang}
+            Fuzzy logic atau dapat disebut logika samar merupakan algoritma kecerdasan buatan teknik reasoning yang dapat menangani masalah dengan unsur ketidakpastian. Fuzzy logic pertama kali dikemukakan oleh matematikawan Iran-Azerbaijan Lotfi Zadeh pada tahun 1965. Dengan menggunakan fuzzy logic, masalah yang bersifat tidak pasti dapat direpresentasikan ke dalam bahasa formal yang dapat dimengerti oleh komputer. Berbeda dengan algoritma lain pada teknik reasoning yang hanya memiliki nilai 0 (false) atau 1 (true). Fuzzy logic memiliki nilai pada rentang 0 sampai 1.
+
+            Pada fuzzy logic, kita dapat menerjemahkan suatu nilai ke dalam bahasa linguistik seperti dingin, hangat, dan panas. Terdapat tiga komponen esensial pada algoritma ini: Fuzzification, Inference dan Defuzzification.  Fuzzification menerima sebuah crisp input (nilai pasti) dan mengubahnya ke dalam bentuk fuzzy input berupa nilai linguistik yang ditentukan oleh sebuah bentuk fungsi keanggotaan. Inferensi merupakan penalaran yang menerima fuzzy input dan mengembalikan nilai fuzzy output. Terakhir, Defuzzification mengubah nilai fuzzy menjadi crisp value berdasarkan fungsi keanggotaan yang telah didefinisikan sehingga hasil tersebut dapat menjadi pertimbangan bagi pengguna sistem.
+
+        \subsection{Deskripsi Masalah}
+            Untuk mempertahankan bisnisnya di tengah-tengah kondisi pandemi, perusahaan kaus kaki Soka berupaya memilih supplier kain dengan kualitas yang sebaik mungkin, namun juga perlu menekan biaya operasionalnya. Diketahui di Jawa Barat terdapat data 100 supplier kain untuk bahan kaus kaki dengan informasi yang terdiri dari kualitas dan harga. Untuk kualitas kain, data yang dimiliki direpresentasikan dengan bilangan real 1-100; Semakin tinggi semakin baik. Adapun untuk harga, representasi datanya berupa bilangan real 1-10; Semakin tinggi semakin mahal.
+
+        \subsection{Tujuan Program}
+            Berdasarkan masalah yang telah diuraikan di atas, tujuan dari pembuatan program adalah untuk mencari supplier dengan kualitas yang tinggi, namun dengan menekan biaya operasionalnya.
+
+    \section{Pembahasan}
+    
+        \subsection{Fuzzification}
+            Fuzzification menerima sebuah crisp input (nilai pasti) dan mengubahnya ke dalam bentuk fuzzy input berupa nilai linguistik yang ditentukan oleh sebuah bentuk fungsi keanggotaan. Dalam kasus ini, nilai-nilai linguistik pada variabel kualitas dapat diperoleh melalui fungsi keanggotaan sebagai berikut:
+
+            \begin{equation}
+                \begin{split}
+                    low(x) = \begin{cases}
+                        1 &, 0 < x \le 20 \\
+                        \frac{-(x - 40)}{40-20} &, 20 < x \le 40 \\
+                    \end{cases}
+                \end{split}
+            \end{equation}
+
+            \begin{equation}
+                \begin{split}
+                    medium(x) = \begin{cases}
+                        0 &, x \le 20 \text{ atau } x \ge 95 \\
+                        \frac{x - 20}{40-20} &, 20 < x < 40 \\
+                        1 &, 40 \le x \le 80 \\
+                        \frac{-(x - 95)}{95-80} &, 80 < x < 95
+                    \end{cases}
+                \end{split}
+            \end{equation}
+
+            \begin{equation}
+                \begin{split}
+                    high(x) = \begin{cases}
+                        0 &, x < 80 \\
+                        \frac{x - 80}{95-80} &, 80 < x < 95 \\
+                        1 &, 95 \le x \le 100
+                    \end{cases}
+                \end{split}
+            \end{equation}
+
+        \subsection{Sistem Inferensi Fuzzy}
+            Sistem inferensi fuzzy merupakan penalaran yang menerima fuzzy input dan mengembalikan nilai fuzzy output. Pada kasus ini, sistem inferensi fuzzy yang digunakan adalah sistem inferensi Mamdani. Sistem inferensi Mamdani merupakan sistem inferensi yang paling umum digunakan. Sistem inferensi ini menghasilkan output berupa nilai fuzzy yang dihasilkan dari kombinasi dari beberapa aturan inferensi yang telah ditentukan. Dalam kasus ini, sistem mengkategorikan supplier menjadi tiga tipe: bad, good, dan excellent. Aturan inferensi yang digunakan didefinisikan pada Table \ref{tab:Aturan Inferensi}.
+
+            \begin{table}[h!]
+                \begin{center}
+                    \begin{tabular}{@{}llll@{}}
+                    \toprule
+                    Quality\textbackslash{}Price & cheap     & medium & expensive \\ \midrule
+                    low                          & Bad       & Bad    & Bad       \\
+                    medium                       & Good      & Good   & Bad       \\
+                    high                         & Excellent & Good   & Bad       \\ \bottomrule
+                    \end{tabular}
+                \end{center}
+                \caption{Aturan Inferensi}
+                \label{tab:Aturan Inferensi}
+            \end{table}
+
+            Dengan definisi aturan pada Table \ref{tab:Aturan Inferensi}, kita memiliki sembilan aturan fuzzy, yaitu:
+
+            \begin{itemize}
+                \item IF quality is low AND price is cheap THEN supplier is bad
+                \item IF quality is low AND price is medium THEN supplier is bad
+                \item IF quality is low AND price is expensive THEN supplier is bad
+                \item IF quality is medium AND price is cheap THEN supplier is good
+                \item IF quality is medium AND price is medium THEN supplier is good
+                \item IF quality is medium AND price is expensive THEN supplier is bad
+                \item IF quality is high AND price is cheap THEN supplier is excellent
+                \item IF quality is high AND price is medium THEN supplier is good
+                \item IF quality is high AND price is expensive THEN supplier is bad
+            \end{itemize}
+
+        \subsection{Defuzzification}
+            Defuzzification mengubah nilai fuzzy menjadi crisp value berdasarkan fungsi keanggotaan yang telah didefinisikan sehingga hasil tersebut dapat menjadi pertimbangan bagi pengguna sistem. Sebelum proses defuzzifikasi, hasil inferensi akan dikomposisi terlebih dahulu, yaitu melakukan agregasi dari hasil clipping sehingga kita memiliki satu fuzzy set tunggal.
+
+            Pada kasus ini, tahap defuzzifikasi menggunakan centroid method atau center of gravity. Dengan metode center of gravity, kita membangkitkan titik-titik secara acak pada hasil kelayakan dari aturan inferensi di atas. Proses penghitungan menggunakan persamaan sebagai berikut:
+
+            \begin{equation}
+                \begin{split}
+                    y^*= \frac{\sum y \cdot \mu_R(y)}{\sum \mu_R(y)}
+                \end{split}
+            \end{equation}
+
+        \subsection{Hasil Komputasi}
+            Model fuzzy logic yang telah diuraikan di atas merupakan implementasi dari model Mamdani dengan metode defuzzifikasi teknik Center of Gravity. Hasil dari penerapan fuzzy logic memberikan lima supplier dengan nilai kelayakan terbaik menggunakan model Mamdani. Berikut merupakan lima supplier terbaik\footnote{Perlu diperhatikan bahwa nilai kelayakan dapat berubah setiap kali dijalankan. Hal ini dikarenakan metode center of gravity membangkitkan titik-titik secara acak untuk menghitung hasil defuzzifikasi.}:
+
+            \begin{table}[h!]
+                \begin{center}
+                    \begin{tabular}{@{}llll@{}}
+                        \toprule
+                        ID Supplier & Kualitas & Harga & Output \\ \midrule
+                        3           & 98       & 2     & 92.28  \\
+                        91          & 98       & 3     & 92.17  \\
+                        52          & 94       & 3     & 89.16  \\
+                        34          & 93       & 4     & 76.12  \\
+                        92          & 83       & 3     & 73.64  \\ \bottomrule
+                    \end{tabular}
+                \end{center}
+                \caption{Hasil Komputasi Fuzzy Logic}
+                \label{tab:Hasil Komputasi}
+            \end{table}
+
+        \newpage
+        \subsection{Kesimpulan}
+            Penerapan fuzzy logic menggunakan aturan model Mamdani dan beberapa fungsi keanggotaan trapesium dan segitiga menghasilkan lima supplier terbaik. Hasil tersebut nantinya akan menjadi pertimbangan oleh perusahaan kaus kaki Soka dalam memilih supplier. Berdasarkan hasil komputasi pada Table \ref{tab:Hasil Komputasi}, terlihat bahwa penerapan fuzzy logic menghasilkan output yang cukup optimal. Namun, pada sistem ini hanya terbatas pada studi kasus dengan dua variabel: kualitas dan harga; Sehingga ketika kita bertemu dengan kasus lain, kita harus mendefinisikan proses fuzzifikasi, inferensi, dan defuzzifikasi dari nol.
+
+        \subsection{Lampiran Program}
+            Sumber kode dapat dapat diakses pada \href[pdfnewwindow]{https://github.com/heritsam/fuzzy_logic}{tautan ini}.
+
+    \newpage
+    \bibliographystyle{plain}
+    \bibliography{references}
+    \nocite{*}
+\end{document}
