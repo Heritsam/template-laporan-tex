@@ -27,8 +27,8 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 % Bibliography
-\usepackage[backend=biber, style=numeric]{biblatex} 
-\addbibresource{references.bib}
+% \usepackage[backend=biber, style=numeric]{biblatex} 
+% \addbibresource{references.bib}
 
 %% Language and font encodings
 \usepackage[english]{babel}
@@ -218,6 +218,7 @@
         Sumber kode dapat dapat diakses pada \href[pdfnewwindow]{https://github.com/heritsam/fuzzy_logic}{tautan ini}.
 
     \newpage
-    \printbibliography[title=Daftar Pustaka]
-
+    \bibliographystyle{plain}
+    \bibliography{references}
+    \nocite{*}
 \end{document}
